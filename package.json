@@ -1,0 +1,22 @@
+{
+  "name": "jessica_pamanian_policygenius_homework",
+  "version": "1.0.0",
+  "description": "Jessica Pamanian",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jexeones24/jessica_pamanian_policygenius_homework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jexeones24/jessica_pamanian_policygenius_homework/issues"
+  },
+  "homepage": "https://github.com/Jexeones24/jessica_pamanian_policygenius_homework#readme",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
+}
