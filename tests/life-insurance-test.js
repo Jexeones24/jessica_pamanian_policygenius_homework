@@ -3,8 +3,6 @@ const mocha = require('mocha')
 const describe = mocha.describe
 const it = mocha.it
 const insurance = require('../src/life-insurance')
-const data = require('../data.js')
-const conditions = data.conditions
 
 describe('insurance', () => {
   describe('yrsOverEighteen()', () => {
@@ -16,7 +14,7 @@ describe('insurance', () => {
     })
     it('should not accept customers aged fewer than 18 years', () => {
       let age = 14
-      let expected = false
+      let expected = 'Life insurance is not available for people under age 18'
       let actual = insurance.yrsOverEighteen(age)
       assert(expected === actual)
     })
@@ -55,24 +53,24 @@ describe('insurance', () => {
   })
   describe('conditionFactor()', () => {
     it('should increase base cost by 1% for allergies', () => {
-      let condition = 'allergies'
+      let conditionName = 'allergies'
       let baseCost = 100
       let expected = 101
-      let actual = insurance.conditionFactor(baseCost, condition)
+      let actual = insurance.conditionFactor(baseCost, conditionName)
       assert(expected === actual)
     })
     it('should increase base cost by 6% for sleep apnea', () => {
-      let condition = 'sleep apnea'
+      let conditionName = 'sleep apnea'
       let baseCost = 100
       let expected = 106
-      let actual = insurance.conditionFactor(baseCost, condition)
+      let actual = insurance.conditionFactor(baseCost, conditionName)
       assert(expected === actual)
     })
     it('should increase base cost by 17% for heart disease', () => {
-      let condition = 'heart disease'
+      let conditionName = 'heart disease'
       let baseCost = 100
       let expected = 117
-      let actual = insurance.conditionFactor(baseCost, condition)
+      let actual = insurance.conditionFactor(baseCost, conditionName)
       assert(expected === actual)
     })
   })
@@ -85,15 +83,3 @@ describe('insurance', () => {
     })
   })
 })
-
-// downcase all conditions
-// yrsOverEighteen returns a number
-// calculateNewBaseCost
-// conditionFactor
-// allergy
-
-// sleep apnea
-
-// heart disease
-
-// female discount - check for 'female' prop

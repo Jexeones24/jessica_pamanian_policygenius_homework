@@ -2,13 +2,13 @@ const data = require('../data.js')
 const conditions = data.conditions
 const customer = data.customer
 // validate form input
-
+// downcase all conditions
 console.log('conditions:', conditions)
 
 const yrsOverEighteen = (age) => {
   let minimum = 18
   if (age < 18) {
-    return false
+    return 'Life insurance is not available for people under age 18'
   }
   let totalYrs = age - minimum
   return Math.floor(totalYrs / 5)
@@ -20,8 +20,9 @@ const calculateNewBaseCost = (fiveYrBlocks) => {
   return base + additionalCost
 }
 
-const conditionFactor = (conditionName, newBaseCost) => {
-  let factor = conditions.filter(condition => condition.name === conditionName)
+const conditionFactor = (newBaseCost, conditionName) => {
+  let conditionObj = conditions.filter(condition => condition.name === conditionName)
+  let factor = conditionObj[0].factor
   let extra = newBaseCost * factor
   return newBaseCost + extra
 }
@@ -36,12 +37,13 @@ const makeQuote = (customer, conditions) => {
   let fiveYrBlocks = yrsOverEighteen(age)
   let newBaseCost = calculateNewBaseCost(fiveYrBlocks)
   let baseCostPlusConditions = conditionFactor(conditionName, newBaseCost)
-  let finalQuote = femaleDiscount(baseCostPlusConditions)
+  return femaleDiscount(baseCostPlusConditions)
 }
 
 module.exports = {
   yrsOverEighteen,
   calculateNewBaseCost,
   conditionFactor,
-  femaleDiscount
+  femaleDiscount,
+  makeQuote
 }
