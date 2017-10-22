@@ -29,9 +29,7 @@ const calculateNewBaseCost = (fiveYrBlocks) => {
 }
 
 const conditionFactor = (conditionName, newBaseCost) => {
-  console.log('conditions:', conditions)
   let conditionObj = conditions.filter(condition => condition.name === conditionName)
-  console.log('condition obj:', conditionObj)
   let factor = conditionObj[0].factor
   let extra = newBaseCost * factor
   return newBaseCost + extra
@@ -43,15 +41,10 @@ const femaleDiscount = (baseCostPlusConditions) => {
 
 const makeQuote = (customer, conditions) => {
   let age = customer.age
-  console.log('age:', age)
   let conditionName = customer.condition
-  console.log('condition name:', conditionName)
   let fiveYrBlocks = yrsOverEighteen(age)
-  console.log('five yr blocks:', fiveYrBlocks)
   let newBaseCost = calculateNewBaseCost(fiveYrBlocks)
-  console.log('new base cost:', newBaseCost)
   let baseCostPlusConditions = conditionFactor(conditionName, newBaseCost)
-  console.log('base plus conditions:', baseCostPlusConditions)
   return customer.gender === 'female' ? femaleDiscount(baseCostPlusConditions) : baseCostPlusConditions
 }
 
@@ -69,13 +62,12 @@ function submit (event) {
   newCustomer.condition = document.getElementById('health-condition').value
   let quote = makeQuote(newCustomer)
   form.reset()
-  console.log('quote:', quote)
   displayQuote(newCustomer, quote)
 }
 
 function displayQuote (newCustomer, quote) {
   let target = document.querySelector('#policy-price')
   let p = document.createElement('p')
-  p.innerHTML = quote
+  p.innerHTML = newCustomer.name + ' - ' + '$' + quote
   target.parentNode.insertBefore(p, target)
 }
