@@ -13,10 +13,11 @@ const conditions = [
   }
 ]
 
+// needs validation
 const yrsOverEighteen = (age) => {
   let minimum = 18
   if (age < 18) {
-    return 'Life insurance is not available for people under age 18'
+    alert('Life insurance is not available for people under age 18')
   }
   let totalYrs = age - minimum
   return Math.floor(totalYrs / 5)
@@ -67,7 +68,10 @@ function submit (event) {
 
 function displayQuote (newCustomer, quote) {
   let target = document.querySelector('#policy-price')
+  let h3 = document.createElement('h3')
+  h3.innerHTML = 'Your Insurance Quote:'
   let p = document.createElement('p')
   p.innerHTML = newCustomer.name + ' - ' + '$' + quote
+  target.parentNode.insertBefore(h3, target)
   target.parentNode.insertBefore(p, target)
 }

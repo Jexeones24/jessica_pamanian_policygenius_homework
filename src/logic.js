@@ -35,7 +35,6 @@ const conditionFactor = (conditionName, newBaseCost) => {
   return newBaseCost + extra
 }
 
-// round to two decimal points
 const femaleDiscount = (baseCostPlusConditions) => {
   return (baseCostPlusConditions - 12).toFixed(2)
 }
