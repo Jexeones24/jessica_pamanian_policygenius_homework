@@ -13,14 +13,6 @@ const conditions = [
   }
 ]
 
-const customer = {
-  name: 'Jess',
-  age: 18,
-  gender: 'female',
-  condition: 'allergies'
-}
-
 module.exports = {
-  conditions,
-  customer
+  conditions
 }

@@ -2,7 +2,7 @@ const assert = require('assert')
 const mocha = require('mocha')
 const describe = mocha.describe
 const it = mocha.it
-const insurance = require('../src/life-insurance')
+const insurance = require('../src/logic.js')
 
 describe('insurance', () => {
   describe('yrsOverEighteen()', () => {
@@ -77,7 +77,7 @@ describe('insurance', () => {
   describe('femaleDiscount()', () => {
     it('should subtract 12 dollars from final quote', () => {
       let finalQuote = 120
-      let expected = 108
+      let expected = (108).toFixed(2)
       let actual = insurance.femaleDiscount(finalQuote)
       assert(expected === actual)
     })
