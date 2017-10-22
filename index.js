@@ -37,7 +37,6 @@ const conditionFactor = (conditionName, newBaseCost) => {
   return newBaseCost + extra
 }
 
-// round to two decimal points
 const femaleDiscount = (baseCostPlusConditions) => {
   return (baseCostPlusConditions - 12).toFixed(2)
 }
@@ -58,24 +57,25 @@ const makeQuote = (customer, conditions) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('form').addEventListener('submit', submit)
-  // let element = document.getElementById('policy-price')
-  // let text = newCustomer.name
-  // element.appendChild(text)
 })
 
 function submit (event) {
   event.preventDefault()
+  let form = document.getElementById('form')
   let newCustomer = {}
   newCustomer.name = document.getElementById('name').value
   newCustomer.age = document.getElementById('age').value
   newCustomer.gender = document.getElementById('gender').value
   newCustomer.condition = document.getElementById('health-condition').value
   let quote = makeQuote(newCustomer)
+  form.reset()
   console.log('quote:', quote)
-  displayQuote(newCustomer)
+  displayQuote(newCustomer, quote)
 }
 
-function displayQuote (newCustomer) {
-  let name = newCustomer.name
-  console.log('name:', name)
+function displayQuote (newCustomer, quote) {
+  let target = document.querySelector('#policy-price')
+  let p = document.createElement('p')
+  p.innerHTML = quote
+  target.parentNode.insertBefore(p, target)
 }
